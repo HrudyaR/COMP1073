@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Lab 2 | COMP1073 Client-Side JavaScript</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Airports</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Airport</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <p id="avgChars"></p>
+    </div>
+	<ul>
+        <!-- <li>Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK</li>
+        <li>John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK</li>
+        <li>Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ</li>
+        <li>London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR</li>
+        <li>Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND</li> -->
+    </ul>
+</body>
+<script>
+    var airportList = document.querySelector('body table tbody');
+    airportList.innerHTML = '';
+    var totalChars = 0;
+    var avgChars;
+    var airports = ['Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK',
+                    'John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK',
+                    'Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ',
+                    'London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR',
+                    'Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND'];
+
+    for(var i = 0; i < airports.length; i++) {
+        var input = airports[i];
+        // Put your code here inside this loop
+        var commaIndex = input.indexOf(',');
+        var airportName = input.substring(0, commaIndex);
+        var airportCode = input.slice(-3);
+        var airportUrl = input.substring(commaIndex+1, input.length - 3).trim();
+
+        var charLength = input.length;
+        totalChars = totalChars + charLength;
+      
+        var anchorTag = `<a href="${airportUrl}">${airportCode}</a>`;
+        var result = `<th>${anchorTag}</th><th>${airportName}</th>`;
+        var listRow = document.createElement('tr');
+        listRow.innerHTML = result;
+        airportList.appendChild(listRow);
+    }
+
+    avgChars = totalChars / airports.length;
+    document.querySelector('#avgChars').textContent = "Average characters of Airport is " + avgChars;
+</script>
+</html>
