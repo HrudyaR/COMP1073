@@ -23,13 +23,6 @@
         </table>
         <p id="avgChars"></p>
     </div>
-	<ul>
-        <!-- <li>Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK</li>
-        <li>John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK</li>
-        <li>Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ</li>
-        <li>London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR</li>
-        <li>Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND</li> -->
-    </ul>
 </body>
 <script>
     var airportList = document.querySelector('body table tbody');
@@ -50,7 +43,10 @@
         var airportCode = input.slice(-3);
         var airportUrl = input.substring(commaIndex+1, input.length - 3).trim();
 
-        var charLength = input.length;
+        // Remove space from the string
+        var chars = airportName.replace(/\s/g, '');
+        // Calculate length of characters
+        var charLength = chars.length;
         totalChars = totalChars + charLength;
       
         var anchorTag = `<a href="${airportUrl}">${airportCode}</a>`;
